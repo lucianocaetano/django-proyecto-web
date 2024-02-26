@@ -1,0 +1,21 @@
+{% extends "ProyectoWebApp/layouts/base.html" %}
+
+
+{% load static%}
+
+{% block content%}
+<div class="mx-auto my-5" style="max-width: 890px">
+  <div class="row">
+  {% for servicio in servicios%}
+      <div class="mx-2 mt-5 col-12" style="background: none; cursor: pointer;">
+        <img class="card-img-top" src="{{servicio.imagen.url}}" alt="Card image cap">
+        <div class="card-body bg-dark text-white">
+          <h5 class="card-title">{{servicio.nombre}}</h5>
+          <p style="overflow-wrap: break-word;">{{servicio.contenido}}</p>
+
+        </div>
+      </div>
+  {% endfor %}
+  </div>
+</div>
+{% endblock%}

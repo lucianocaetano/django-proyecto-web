@@ -1,0 +1,32 @@
+{% extends "ProyectoWebApp/layouts/base.html" %}
+
+
+{% load static%}
+
+{% block content%}
+  <div class="mt-4 text-white text-center font-weight-bold">
+    <h1>Contactanos</h1>
+  </div>
+
+  <form 
+    class="my-5 mx-auto text-white py-5 d-flex flex-column align-items-center"
+    style="background: #373534; width: 355px;"
+    action="{% url 'contacto' %}"
+    method="POST"
+  >
+    <div>
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="from-group">
+        {{ field.errors }}
+        {{ field.label_tag }}
+        <br/>
+        {{ field }}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+    </div>
+  </form>
+
+
+{% endblock%}

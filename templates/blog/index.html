@@ -1,0 +1,39 @@
+{% extends "ProyectoWebApp/layouts/base.html" %}
+
+
+{% load static%}
+
+{% block content%}
+
+<div class="container my-5" style="max-width: 800px">
+
+  <section>
+    <div class="mx-auto text-white text-center">
+      categorias:
+
+      {% for post in posts%}
+        {% for categoria in post.categorias.all %}
+
+        <a href="{% url 'blog_form_category' categoria.id %}" class=" mx-2 px-2 py-1 text-nowrap text-white rounded" style="background: #942200;">
+
+            {{categoria.nombre}}
+          </a>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <div class="row d-flex justify-content-center">
+    {% for post in posts%}
+      <div class="mx-2 mt-5 col-5" style="background: none; cursor: pointer;">
+        <img class="card-img-top" src="{{post.imagen.url}}" alt="Card image cap">
+        <div class="card-body bg-dark text-white">
+          <h5 class="card-title">{{post.nombre}}</h5>
+          <p style="overflow-wrap: break-word;">{{post.contenido}}</p>
+
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock%}

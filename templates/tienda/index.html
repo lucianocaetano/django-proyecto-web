@@ -1,0 +1,54 @@
+{% extends "ProyectoWebApp/layouts/base.html" %}
+
+
+{% load static%}
+
+{% block content%}
+
+<div>
+  <div class="container">
+
+
+    <p>
+      {% if request.user.is_authenticated %}
+      <div class="lg:d-none mr-5 lg:mt-5 text-white bg-dark mx-auto rounded px-2" style="max-width: 600px; height: 330px">
+        <div class="px-1 my-2">
+          <p class="text-center pt-2">
+            total: {{importe_total_carro}}$
+          </p>
+          {% include "carro/widget.html" %}
+        </div>
+      </div>
+      {% else %}
+      <div class="text-white lg:d-none bg-dark mx-auto rounded px-2 text-center py-3" style="max-width: 600px">
+        No estas autenticado
+      </div>
+      {% endif %}
+    </p>
+    <div class="row my-5">
+
+      {% for producto in productos %}
+      <div class="mb-1 col-md-4" style="background: none; cursor: pointer; min-width: 300px">
+        <div class="card">
+          <img src="{{producto.imagen.url}}" alt="dawd"/>
+          <div class="card-body">
+            <h5 class="card-title">{{producto.nombre}}</h5>
+            <p class="card-text">
+              Disponible: {% if producto.disponabilidad %} si {% else %} no {% endif %}
+              precio: {{producto.precio}}
+            </p>
+          </div>
+
+          <div class="card-footer">
+
+            <a href="{% url "carro:agregar" producto.id %}" class="btn">Agregar al Carro</a>
+          </div>
+        </div>
+
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+{% endblock%}

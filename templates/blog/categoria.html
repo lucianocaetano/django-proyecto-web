@@ -1,0 +1,32 @@
+{% extends "ProyectoWebApp/layouts/base.html" %}
+
+
+{% load static%}
+
+{% block content%}
+
+
+
+<div class="container my-5" style="max-width: 800px">
+
+  <section>
+    <div style="width: 75%;" class="mx-auto text-white text-center">
+      categoria: {{categoria}}
+    </div>
+  </section>
+ 
+  <div class="row">
+    {% for post in posts%}
+      <div class="mx-2 mt-5 col-12" style="background: none; cursor: pointer;">
+        <img class="card-img-top" src="{{post.imagen.url}}" alt="Card image cap">
+        <div class="card-body bg-dark text-white">
+          <h5 class="card-title">{{post.nombre}}</h5>
+          <p style="overflow-wrap: break-word;">{{post.contenido}}</p>
+
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock%}
